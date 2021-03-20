@@ -13,7 +13,7 @@ Second derivative of rotation assuming a single motor. Arm ![](https://render.gi
 Acceleration of drone from a single motor. Motor force is rotated by ![](https://render.githubusercontent.com/render/math?math=\theta).
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{\alpha}=\frac{1}{m}\underrightarrow{F^'}=\frac{1}{m}(\cos(\theta)\underrightarrow{F}%2B\sin(\theta)(\underrightarrow{e}\times%20\underrightarrow{F})%2B\underrightarrow{e}(1-\cos(\theta))(\underrightarrow{e}\cdot%20\underrightarrow{F})))
-
+ 
 Position of drone.
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\ddot{\underrightarrow{r}}=\underrightarrow{\alpha})
@@ -44,10 +44,18 @@ Velocity of drone. ![](https://render.githubusercontent.com/render/math?math=\co
 ### a(t)
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\displaystyle\int\underrightarrow{a}(t)dt=\displaystyle\int\cos(\theta(t))\underrightarrow{F}dt)
 
-Define temporary x
+Its not possible to compute this integral, so try approximation by taylor expansion.
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20x=\theta(t))
+Expand brackets in a and substitute.
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20dx=2\frac{(t\ddot{\underrightarrow{\theta}}_x%2B\dot{\underrightarrow{\theta}}_x(0))(\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}_x%2Bt\dot{\underrightarrow{\theta}}_x(0)%2B\underrightarrow{\theta}_x(0))%2B(t\ddot{\underrightarrow{\theta}}_y%2B\dot{\underrightarrow{\theta}}_y(0))(\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}_y%2Bt\dot{\underrightarrow{\theta}}_y(0)%2B\underrightarrow{\theta}_y(0))%2B(t\ddot{\underrightarrow{\theta}}_z%2B\dot{\underrightarrow{\theta}}_z(0))(\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}_z%2Bt\dot{\underrightarrow{\theta}}_z(0)%2B\underrightarrow{\theta}_z(0))}{\sqrt{(\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}_x%2Bt\dot{\underrightarrow{\theta}}_x(0)%2B\underrightarrow{\theta}_x(0)%2B)^2%2B(\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}_y%2Bt\dot{\underrightarrow{\theta}}_y(0)%2B\underrightarrow{\theta}_y(0))^2%2B(\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}_z%2Bt\dot{\underrightarrow{\theta}}_z(0)%2B\underrightarrow{\theta}_z(0))^2}}dt)
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\theta(t)=\sqrt{x(t)},%20\ddddot{x}(t)=0)
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20dx=2\frac{(t\ddot{\underrightarrow{\theta}}_x%2B\dot{\underrightarrow{\theta}}_x(0))(\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}_x%2Bt\dot{\underrightarrow{\theta}}_x(0)%2B\underrightarrow{\theta}_x(0))%2B(t\ddot{\underrightarrow{\theta}}_y%2B\dot{\underrightarrow{\theta}}_y(0))(\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}_y%2Bt\dot{\underrightarrow{\theta}}_y(0)%2B\underrightarrow{\theta}_y(0))%2B(t\ddot{\underrightarrow{\theta}}_z%2B\dot{\underrightarrow{\theta}}_z(0))(\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}_z%2Bt\dot{\underrightarrow{\theta}}_z(0)%2B\underrightarrow{\theta}_z(0))}{x}dt)
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20a(t)=\cos(\sqrt{x(t)}))
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\dot{a}(t)=-\frac{\dot{x}(t)}{2\sqrt{x(t)}}\sin(\sqrt{x(t)}))
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\ddot{a}(t)=-(\frac{\dot{x}(t)}{2\sqrt{x(t)}})^2\cos(\sqrt{x(t)})-(\frac{\ddot{x}(t)}{2\sqrt{x(t)}}-\frac{\dot{x}(t)^2}{4x(t)^{\frac{3}{2}}})\sin(\sqrt{x(t)}))
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\dddot{a}(t)=(\frac{\dot{x}(t)}{2\sqrt{x(t)}})^3\sin(\sqrt{x(t)})-2(\frac{\dot{x}(t)}{2\sqrt{x(t)}})(\frac{\ddot{x}(t)}{2\sqrt{x(t)}}-\frac{\dot{x}(t)^2}{4x(t)^{\frac{3}{2}}})\cos(\sqrt{x(t)})-(\frac{\ddot{x}(t)}{2\sqrt{x(t)}}-\frac{\dot{x}(t)^2}{4x(t)^{\frac{3}{2}}})(\frac{\dot{x}(t)}{2\sqrt{x(t)}})\cos(\sqrt{x(t)})-(\frac{\dddot{x}(t)}{2\sqrt{x(t)}}-\frac{\dot{x}(t)\ddot{x}(t)}{4x(t)^{\frac{3}{2}}}-\frac{2\dot{x}(t)\ddot{x}(t)}{4x(t)^{\frac{3}{2}}}%2B\frac{3\dot{x}(t)^3}{8x(t)^{\frac{5}{2}}})\sin(\sqrt{x(t)}))
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\dddot{a}(t)=(\frac{3\dot{x}(t)^3}{8x(t)^2}-\frac{3\dot{x}(t)\ddot{x}(t)}{4x(t)})\cos(\sqrt{x(t)})%2B((\frac{\dot{x}(t)}{2\sqrt{x(t)}})^3-\frac{\dddot{x}(t)}{2\sqrt{x(t)}}%2B\frac{3\dot{x}(t)\ddot{x}(t)}{4x(t)^{\frac{3}{2}}}-\frac{3\dot{x}(t)^3}{8x(t)^{\frac{5}{2}}})\sin(\sqrt{x(t)}))

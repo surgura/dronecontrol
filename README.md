@@ -46,8 +46,6 @@ Velocity of drone. ![](https://render.githubusercontent.com/render/math?math=\co
 
 Its not possible to compute this integral, so try approximation by taylor expansion.
 
-Expand brackets in a and substitute.
-
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\theta(t)=\sqrt{x(t)},%20\ddddot{x}(t)=0)
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20a(t)=\cos(\sqrt{x(t)}))
@@ -56,6 +54,6 @@ Expand brackets in a and substitute.
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\ddot{a}(t)=-(\frac{\dot{x}(t)}{2\sqrt{x(t)}})^2\cos(\sqrt{x(t)})-(\frac{\ddot{x}(t)}{2\sqrt{x(t)}}-\frac{\dot{x}(t)^2}{4x(t)^{\frac{3}{2}}})\sin(\sqrt{x(t)}))
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\dddot{a}(t)=(\frac{\dot{x}(t)}{2\sqrt{x(t)}})^3\sin(\sqrt{x(t)})-2(\frac{\dot{x}(t)}{2\sqrt{x(t)}})(\frac{\ddot{x}(t)}{2\sqrt{x(t)}}-\frac{\dot{x}(t)^2}{4x(t)^{\frac{3}{2}}})\cos(\sqrt{x(t)})-(\frac{\ddot{x}(t)}{2\sqrt{x(t)}}-\frac{\dot{x}(t)^2}{4x(t)^{\frac{3}{2}}})(\frac{\dot{x}(t)}{2\sqrt{x(t)}})\cos(\sqrt{x(t)})-(\frac{\dddot{x}(t)}{2\sqrt{x(t)}}-\frac{\dot{x}(t)\ddot{x}(t)}{4x(t)^{\frac{3}{2}}}-\frac{2\dot{x}(t)\ddot{x}(t)}{4x(t)^{\frac{3}{2}}}%2B\frac{3\dot{x}(t)^3}{8x(t)^{\frac{5}{2}}})\sin(\sqrt{x(t)}))
-
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\dddot{a}(t)=(\frac{3\dot{x}(t)^3}{8x(t)^2}-\frac{3\dot{x}(t)\ddot{x}(t)}{4x(t)})\cos(\sqrt{x(t)})%2B((\frac{\dot{x}(t)}{2\sqrt{x(t)}})^3-\frac{\dddot{x}(t)}{2\sqrt{x(t)}}%2B\frac{3\dot{x}(t)\ddot{x}(t)}{4x(t)^{\frac{3}{2}}}-\frac{3\dot{x}(t)^3}{8x(t)^{\frac{5}{2}}})\sin(\sqrt{x(t)}))
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\ddddot{a}(t)=-(\frac{3\dot{x}(t)^3}{8x(t)^2}-\frac{3\dot{x}(t)\ddot{x}(t)}{4x(t)})(\frac{\dot{x}(t)}{2\sqrt{x(t)}})\sin(\sqrt{x(t)})%2B(\frac{9\ddot{x}(t)\dot{x}(t)^2}{8x(t)^2}-\frac{3\dot{x}(t)^4}{4x(t)^3}-\frac{3\ddot{x}(t)^2%2B3\dot{x}(t)\dddot{x}(t)}{4x(t)}%2B\frac{3\dot{x}(t)^2\ddot{x}(t)}{4x(t)^2})\cos(\sqrt{x(t)}))

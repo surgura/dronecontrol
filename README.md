@@ -50,7 +50,7 @@ However, instead of evaluating the complete integral it is possible to only eval
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\overline{\theta}(q,w,t)=\theta(q)%2B\frac{\theta(w)-\theta(q)}{w-q}(t-q))
 
-Where ![](https://render.githubusercontent.com/render/math?math=\color{%23666}q) and ![](https://render.githubusercontent.com/render/math?math=\color{%23666}w) are the points to estimate ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\theta(t)) between.  Assuming the function parts will be evaluated ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20n) n times over the required timespan, let
+Where ![](https://render.githubusercontent.com/render/math?math=\color{%23666}q) and ![](https://render.githubusercontent.com/render/math?math=\color{%23666}w) are the points to estimate ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\theta(t)) between.  Assuming the function parts will be evaluated ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20n) times over the required timespan, let
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\theta_n(t)=k_nt%2Bl_n)
 

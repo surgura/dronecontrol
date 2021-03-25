@@ -37,27 +37,32 @@ Position of drone. ![](https://render.githubusercontent.com/render/math?math=\co
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{a}(t)=\cos(\theta(t))\underrightarrow{F})
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{b}(t)=\sin(\theta(t))(\underrightarrow{e}(t)\times%20\underrightarrow{F}))
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{b}(t)=\sin(\theta(t))\underrightarrow{e}(t)\times%20\underrightarrow{F})
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{c}(t)=\underrightarrow{e}(t)(1-\cos(\theta(t)))(\underrightarrow{e}(t)\cdot%20\underrightarrow{F}))
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{c}(t)=(1-\cos(\theta(t)))(\underrightarrow{e}(t)\cdot%20\underrightarrow{F})\underrightarrow{e}(t))
 
 It is not possible to analytically find a solution to this integral, so estimation is required.
 
 ## Integral estimation
 The most straightforward way is to simply evaluate ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\alpha) at different intervals, using a variant of the methods described [here](https://tutorial.math.lamar.edu/classes/calcii/approximatingdefintegrals.aspx).
 
-Note that an analytical solution to the integral cannot be found because of the square root in the trigonometric functions. Instead of evaluating the complete integral, instead only the root can be evaluated, the result of which can then be used to convert the root to a linear function(simple interpolation). From there on the integral can be found analytically.
+However, instead of evaluating the complete integral it is possible to only evaluate ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\theta(t)) and ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{e}(t)) and use the obtained values to replace complex parts of ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{\alpha}(t)) with simple linear interpolations. This simplifies the integral to the point where it can be solved analytically. For example, linearization of the root ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\theta(t)):
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\overline{\theta}(q,w,t)=\theta(q)%2B\frac{\theta(w)-\theta(q)}{w-q}(t-q))
 
-Where ![](https://render.githubusercontent.com/render/math?math=\color{%23666}q) and ![](https://render.githubusercontent.com/render/math?math=\color{%23666}w) are the points to estimate ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\theta(t)) between. Assuming this function we be evaluated ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20n) n times over the required timespan, it is simpler to write it as:
+Where ![](https://render.githubusercontent.com/render/math?math=\color{%23666}q) and ![](https://render.githubusercontent.com/render/math?math=\color{%23666}w) are the points to estimate ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\theta(t)) between.  Assuming the function parts will be evaluated ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20n) n times over the required timespan, let
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20k_nt%2Bl_n)
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\theta_n(t)=k_nt%2Bl_n)
 
-This simplifies the drone position integral.
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{e_n}(t)=\underrightarrow{o_n}t%2B\underrightarrow{p_n})
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{k_n}(t)=\cos(k_nt%2Bl_n)\underrightarrow{F})
+This simplifies the drone position integral to
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{l_n}(t)=\sin(k_nt%2Bl_n)(\frac{\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}%2Bt\dot{\underrightarrow{\theta}}(0)%2B\underrightarrow{\theta}(0)}{k_nt%2Bl_n}\times%20\underrightarrow{F}))
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{a_n}(t)=\cos(k_nt%2Bl_n)\underrightarrow{F})
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{c_n}(t)=\frac{\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}%2Bt\dot{\underrightarrow{\theta}}(0)%2B\underrightarrow{\theta}(0)}{k_nt%2Bl_n}(1-\cos(k_nt%2Bl_n))(\frac{\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}%2Bt\dot{\underrightarrow{\theta}}(0)%2B\underrightarrow{\theta}(0)}{k_nt%2Bl_n}\cdot%20\underrightarrow{F}))
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{b_n}(t)=\sin(k_nt%2Bl_n)(\underrightarrow{o_n}t%2B\underrightarrow{p_n})\times%20\underrightarrow{F})
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{c_n}(t)=(1-\cos(k_nt%2Bl_n))((\underrightarrow{o_n}t%2B\underrightarrow{p_n})\cdot%20\underrightarrow{F})(\underrightarrow{o_n}t%2B\underrightarrow{p_n}))
+
+## Resulting formulas
+TODO

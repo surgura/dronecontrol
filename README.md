@@ -12,7 +12,7 @@ Second derivative of rotation assuming a single motor. Arm ![](https://render.gi
 
 Acceleration of drone from a single motor. Motor force is rotated by ![](https://render.githubusercontent.com/render/math?math=\theta).
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{\alpha}=\frac{1}{m}\underrightarrow{F^'}=\frac{1}{m}(\cos(\theta)\underrightarrow{F}%2B\sin(\theta)(\underrightarrow{e}\times%20\underrightarrow{F})%2B\underrightarrow{e}(1-\cos(\theta))(\underrightarrow{e}\cdot%20\underrightarrow{F})))
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{\alpha}=\frac{1}{m}\overline{\underrightarrow{F}}=\frac{1}{m}(\cos(\theta)\underrightarrow{F}%2B\sin(\theta)(\underrightarrow{e}\times%20\underrightarrow{F})%2B\underrightarrow{e}(1-\cos(\theta))(\underrightarrow{e}\cdot%20\underrightarrow{F})))
  
 Position of drone.
 
@@ -31,9 +31,9 @@ Rotational axis ![](https://render.githubusercontent.com/render/math?math=\color
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{e}(t)=\frac{\underrightarrow{\theta}(t)}{\theta(t)})
 
-Velocity of drone. ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\alpha) has been split in the three operands of addition, because their integrals can be found seperately.
+Position of drone. ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\alpha) has been split in three parts that can be integrated seperately.
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{v}=\frac{1}{m}\displaystyle\int%20\underrightarrow{a}(t)%2B\underrightarrow{b}(t)%2B\underrightarrow{c}(t)dt)
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{r}(t)=\frac{1}{m}\displaystyle\int\int%20\underrightarrow{a}(t)%2B\underrightarrow{b}(t)%2B\underrightarrow{c}(t)dtdt)
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{a}(t)=\cos(\theta(t))\underrightarrow{F})
 
@@ -41,19 +41,23 @@ Velocity of drone. ![](https://render.githubusercontent.com/render/math?math=\co
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{c}(t)=\underrightarrow{e}(t)(1-\cos(\theta(t)))(\underrightarrow{e}(t)\cdot%20\underrightarrow{F}))
 
-### a(t)
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\displaystyle\int\underrightarrow{a}(t)dt=\displaystyle\int\cos(\theta(t))\underrightarrow{F}dt)
+It is not possible to analytically find a solution to this integral, so estimation is required.
 
-Its not possible to compute this integral, so try approximation by taylor expansion.
+## Integral estimation
+The most straightforward way is to simply evaluate ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\alpha) at different intervals, using a variant of the methods described [here](https://tutorial.math.lamar.edu/classes/calcii/approximatingdefintegrals.aspx).
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\theta(t)=\sqrt{x(t)},%20\ddddot{x}(t)=0)
+Note that an analytical solution to the integral cannot be found because of the square root in the trigonometric functions. Instead of evaluating the complete integral, instead only the root can be evaluated, the result of which can then be used to convert the root to a linear function(simple interpolation). From there on the integral can be found analytically.
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20a(t)=\cos(\sqrt{x(t)}))
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\overline{\theta}(q,w,t)=\theta(q)%2B\frac{\theta(w)-\theta(q)}{w-q}(t-q))
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\dot{a}(t)=-\frac{\dot{x}(t)}{2\sqrt{x(t)}}\sin(\sqrt{x(t)}))
+Where ![](https://render.githubusercontent.com/render/math?math=\color{%23666}q) and ![](https://render.githubusercontent.com/render/math?math=\color{%23666}w) are the points to estimate ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\theta(t)) between. Assuming this function we be evaluated ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20n) n times over the required timespan, it is simpler to write it as:
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\ddot{a}(t)=-(\frac{\dot{x}(t)}{2\sqrt{x(t)}})^2\cos(\sqrt{x(t)})-(\frac{\ddot{x}(t)}{2\sqrt{x(t)}}-\frac{\dot{x}(t)^2}{4x(t)^{\frac{3}{2}}})\sin(\sqrt{x(t)}))
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20k_nt%2Bl_n)
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\dddot{a}(t)=(\frac{3\dot{x}(t)^3}{8x(t)^2}-\frac{3\dot{x}(t)\ddot{x}(t)}{4x(t)})\cos(\sqrt{x(t)})%2B((\frac{\dot{x}(t)}{2\sqrt{x(t)}})^3-\frac{\dddot{x}(t)}{2\sqrt{x(t)}}%2B\frac{3\dot{x}(t)\ddot{x}(t)}{4x(t)^{\frac{3}{2}}}-\frac{3\dot{x}(t)^3}{8x(t)^{\frac{5}{2}}})\sin(\sqrt{x(t)}))
+This simplifies the drone position integral.
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\ddddot{a}(t)=-(\frac{3\dot{x}(t)^3}{8x(t)^2}-\frac{3\dot{x}(t)\ddot{x}(t)}{4x(t)})(\frac{\dot{x}(t)}{2\sqrt{x(t)}})\sin(\sqrt{x(t)})%2B(\frac{9\ddot{x}(t)\dot{x}(t)^2}{8x(t)^2}-\frac{3\dot{x}(t)^4}{4x(t)^3}-\frac{3\ddot{x}(t)^2%2B3\dot{x}(t)\dddot{x}(t)}{4x(t)}%2B\frac{3\dot{x}(t)^2\ddot{x}(t)}{4x(t)^2})\cos(\sqrt{x(t)}))
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{k_n}(t)=\cos(k_nt%2Bl_n)\underrightarrow{F})
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{l_n}(t)=\sin(k_nt%2Bl_n)(\frac{\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}%2Bt\dot{\underrightarrow{\theta}}(0)%2B\underrightarrow{\theta}(0)}{k_nt%2Bl_n}\times%20\underrightarrow{F}))
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{c_n}(t)=\frac{\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}%2Bt\dot{\underrightarrow{\theta}}(0)%2B\underrightarrow{\theta}(0)}{k_nt%2Bl_n}(1-\cos(k_nt%2Bl_n))(\frac{\frac{1}{2}t^2\ddot{\underrightarrow{\theta}}%2Bt\dot{\underrightarrow{\theta}}(0)%2B\underrightarrow{\theta}(0)}{k_nt%2Bl_n}\cdot%20\underrightarrow{F}))

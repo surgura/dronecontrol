@@ -1,5 +1,5 @@
 # Drone control
-Simulation of and control algorithm for quad rotor drone.
+Simulation of and control algorithm for quad rotor drone. Documentation is mainly written for myself, but feel free to read.
 
 ## Mathematical model
 Rotation of drone in axis-angle representation.

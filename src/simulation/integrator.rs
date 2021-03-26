@@ -15,15 +15,10 @@ impl Integrator {
 	}
 
 	pub fn step(&self, body: &mut Drone, delta: f32) {
-		// Apply gravity
-		//body.position = body.position + delta * body.velocity + 0.5 * self.gravity * delta * delta;
-		//body.velocity = body.velocity + delta * self.gravity;
-
 		// Apply motors
 		let mut inverse_inertia: Matrix3<f32> = Matrix3::zeros();
 		na::linalg::try_invert_to(body.inertia, &mut inverse_inertia);
 
-		//let force_pos: Vector3<f32> = Vector3::new(1.0, 0.0, 0.0);
 		let force_pos: Vector3<f32> = Vector3::new(1.0, 0.0, 0.0);
 		let force: Vector3<f32> = Vector3::new(0.0, 1.0, 0.0);
 

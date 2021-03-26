@@ -38,13 +38,13 @@ impl Integrator {
 		let half_e: Vector3<f32> = half_rotation.normalize();
 		let half_acceleration: Vector3<f32>;
 		if half_theta == 0.0 {
-			half_acceleration = (1.0 * body.mass) * force; // + self.gravity;
+			half_acceleration = (1.0 * body.mass) * force + self.gravity;
 		} else {
 			half_acceleration = (1.0 * body.mass)
 				* (half_theta.cos() * force
 					+ half_theta.sin() * half_e.cross(&force)
-					+ (1.0 - half_theta.cos()) * (half_e.dot(&force)) * half_e);
-			//+ self.gravity;
+					+ (1.0 - half_theta.cos()) * (half_e.dot(&force)) * half_e)
+				+ self.gravity;
 		}
 		let half_velocity = body.velocity + half_delta * half_acceleration;
 

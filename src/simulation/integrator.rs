@@ -1,5 +1,5 @@
 extern crate nalgebra as na;
-use super::rigidbody::Rigidbody;
+use super::drone::Drone;
 use na::{Matrix3, Vector3};
 
 pub struct Integrator {
@@ -14,7 +14,7 @@ impl Integrator {
 		};
 	}
 
-	pub fn step(&self, body: &mut Rigidbody, delta: f32) {
+	pub fn step(&self, body: &mut Drone, delta: f32) {
 		// Apply gravity
 		//body.position = body.position + delta * body.velocity + 0.5 * self.gravity * delta * delta;
 		//body.velocity = body.velocity + delta * self.gravity;

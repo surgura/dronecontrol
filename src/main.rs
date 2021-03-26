@@ -1,9 +1,9 @@
 extern crate nalgebra as na;
-mod physics;
+mod simulation;
 use na::{Matrix3, Vector3};
-use physics::integrator::Integrator;
-use physics::rigidbody::Rigidbody;
 use plotters::prelude::*;
+use simulation::drone::Drone;
+use simulation::integrator::Integrator;
 
 fn main() {
     // width = depth = 0.5
@@ -23,7 +23,7 @@ fn main() {
         0.0,
         1.0 / 12.0 * mass * (height * height + width * width),
     );
-    let mut drone = Rigidbody::new(mass, inertia);
+    let mut drone = Drone::new(mass, inertia);
 
     let integrator = Integrator::new(9.81);
 

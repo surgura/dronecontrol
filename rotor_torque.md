@@ -1,4 +1,6 @@
 # Rotor torque
+*I am currently in the process of understanding this part. Can be blatently wrong.*
+
 A quadcopter can change its yaw by having a different rotational speed between its clockwise and counterclockwise spinning rotors. Each rotor pushes against the air, causing a torque, mainly around the yaw axis. Increasing and decreasing the speed of rotors also changes the drone's rotation, just like a reaction wheel would, but this is generally negligible compared the aforementioned force.
 
 ![](yaw.png)
@@ -23,3 +25,15 @@ Questions arrise: How much yaw torque? And: How does this influence pitch and ro
 Where R is the rotation matrix of the rotor.
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20%20R(\theta)=\begin{pmatrix}\cos(\theta)%260%26\sin{\theta}%5C%5C0%261%260%5C%5C-\sin(\theta)%260%26\cos(\theta)\end{pmatrix})
+
+Solving
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\displaystyle\int_0^{2\pi}\begin{pmatrix}\underrightarrow{a}_x%2Br\cos(\theta)%5C%5C\underrightarrow{a}_y%5C%5C\underrightarrow{a}_z-r\sin(\theta)\end{pmatrix}\times\begin{pmatrix}F\sin(\theta)%5C%5C0%5C%5CF\cos(\theta)\end{pmatrix}\delta\theta)
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\displaystyle\int_0^{2\pi}\begin{pmatrix}F\underrightarrow{a}_y\cos(\theta)%5C%5CF(\underrightarrow{a}_z-r\sin(\theta))\sin(\theta)-F(\underrightarrow{a}_x%2Br\cos(\theta))\cos(\theta)%5C%5CF\underrightarrow{a}_y\sin(\theta)\end{pmatrix}\delta\theta)
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=F\displaystyle\int_0^{2\pi}\begin{pmatrix}\underrightarrow{a}_y\cos(\theta)%5C%5C\underrightarrow{a}_z\sin(\theta)-\underrightarrow{a}_x\cos(\theta)-r%5C%5C\underrightarrow{a}_y\sin(\theta)\end{pmatrix}\delta\theta)
+
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\begin{pmatrix}0%5C%5C2\pi%20rF%5C%5C0\end{pmatrix}\delta\theta)
+
+That is quite nice. Only yaw is affected by this effect, even if the rotor is positioned higher or lower than the drone's center of mass.

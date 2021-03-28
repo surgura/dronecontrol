@@ -20,7 +20,7 @@ Questions arrise: How much yaw torque? And: How does this influence pitch and ro
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\underrightarrow{a}): arm from the center of gravity of the drone to the center of the rotor.
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\displaystyle\int_0^{2\pi}(\underrightarrow{a}%2BR(\theta)\begin{pmatrix}r%5C%5C0%5C%5C0\end{pmatrix})\times(R(\theta)\begin{pmatrix}0%5C%5C0%5C%5CF\end{pmatrix})\delta\theta)
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\displaystyle\int_0^{2\pi}(\underrightarrow{a}%2BR(\theta)\begin{pmatrix}r%5C%5C0%5C%5C0\end{pmatrix})\times)![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large(R(\theta)\begin{pmatrix}0%5C%5C0%5C%5CF\end{pmatrix})\delta\theta)
 
 Where R is the rotation matrix of the rotor.
 
@@ -28,7 +28,7 @@ Where R is the rotation matrix of the rotor.
 
 Solving
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\displaystyle\int_0^{2\pi}\begin{pmatrix}\underrightarrow{a}_x%2Br\cos(\theta)%5C%5C\underrightarrow{a}_y%5C%5C\underrightarrow{a}_z-r\sin(\theta)\end{pmatrix}\times\begin{pmatrix}F\sin(\theta)%5C%5C0%5C%5CF\cos(\theta)\end{pmatrix}\delta\theta)
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\displaystyle\int_0^{2\pi}\begin{pmatrix}\underrightarrow{a}_x%2Br\cos(\theta)%5C%5C\underrightarrow{a}_y%5C%5C\underrightarrow{a}_z-r\sin(\theta)\end{pmatrix}\times)![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\begin{pmatrix}F\sin(\theta)%5C%5C0%5C%5CF\cos(\theta)\end{pmatrix}\delta\theta)
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\displaystyle\int_0^{2\pi}\begin{pmatrix}F\underrightarrow{a}_y\cos(\theta)%5C%5CF(\underrightarrow{a}_z-r\sin(\theta))\sin(\theta)-F(\underrightarrow{a}_x%2Br\cos(\theta))\cos(\theta)%5C%5CF\underrightarrow{a}_y\sin(\theta)\end{pmatrix}\delta\theta)
 

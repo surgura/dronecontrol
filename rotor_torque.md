@@ -30,10 +30,12 @@ Solving
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\displaystyle\int_0^{2\pi}\begin{pmatrix}\underrightarrow{a}_x%2Br\cos(\theta)%5C%5C\underrightarrow{a}_y%5C%5C\underrightarrow{a}_z-r\sin(\theta)\end{pmatrix}\times)![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\begin{pmatrix}F\sin(\theta)%5C%5C0%5C%5CF\cos(\theta)\end{pmatrix}\delta\theta)
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\displaystyle\int_0^{2\pi}\begin{pmatrix}F\underrightarrow{a}_y\cos(\theta)%5C%5CF(\underrightarrow{a}_z-r\sin(\theta))\sin(\theta)-F(\underrightarrow{a}_x%2Br\cos(\theta))\cos(\theta)%5C%5CF\underrightarrow{a}_y\sin(\theta)\end{pmatrix}\delta\theta)
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\displaystyle\int_0^{2\pi}\begin{pmatrix}F\underrightarrow{a}_y\cos(\theta)%5C%5CF(\underrightarrow{a}_z-r\sin(\theta))\sin(\theta)-F(\underrightarrow{a}_x%2Br\cos(\theta))\cos(\theta)%5C%5C-F\underrightarrow{a}_y\sin(\theta)\end{pmatrix}\delta\theta)
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=F\displaystyle\int_0^{2\pi}\begin{pmatrix}\underrightarrow{a}_y\cos(\theta)%5C%5C\underrightarrow{a}_z\sin(\theta)-\underrightarrow{a}_x\cos(\theta)-r%5C%5C\underrightarrow{a}_y\sin(\theta)\end{pmatrix}\delta\theta)
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=F\displaystyle\int_0^{2\pi}\begin{pmatrix}\underrightarrow{a}_y\cos(\theta)%5C%5C\underrightarrow{a}_z\sin(\theta)-\underrightarrow{a}_x\cos(\theta)-r%5C%5C-\underrightarrow{a}_y\sin(\theta)\end{pmatrix}\delta\theta)
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\begin{pmatrix}0%5C%5C2\pi%20rF%5C%5C0\end{pmatrix}\delta\theta)
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\begin{pmatrix}0%5C%5C-2\pi%20rF%5C%5C0\end{pmatrix}\delta\theta)
+
+**This makes no sense, a must be relevant**
 
 That is quite nice. Only yaw is affected by this effect, even if the rotor is positioned higher or lower than the drone's center of mass.

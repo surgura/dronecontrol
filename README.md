@@ -2,6 +2,8 @@
 Quad rotor drone simulation and control. Documentation is mainly written for myself, but feel free to read.
 
 ## Mathematical model
+*The following model only accounts for a single motor. Adding the remaining three should be straightforward and does not increase the complexity of the integrals.*
+
 Rotation of drone in axis-angle representation.
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{\theta}=\theta%20\underrightarrow{e},\lvert%20e\rvert=1)
@@ -45,6 +47,8 @@ It is not possible to analytically find a solution to this integral, so estimati
 
 ## Integral estimation
 The most straightforward way is to simply evaluate ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\alpha) at different intervals, using a variant of the methods described [here](https://tutorial.math.lamar.edu/classes/calcii/approximatingdefintegrals.aspx).
+
+**Current code uses this straightforward estimation**
 
 However, instead of evaluating the complete integral it is possible to only evaluate ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\theta) and ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\underrightarrow{e}) and use the obtained values to replace problematic parts of ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\underrightarrow{\alpha}(t)) with simple linear interpolations. This simplifies the integral to the point where it can be solved analytically, and should improve accuracy when rotational velocity is high, although high rotational acceleration remains relatively inaccurate. For example, linearization of the root ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\theta(t)):
 

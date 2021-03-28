@@ -1,8 +1,12 @@
 # Drone control
 Quad rotor drone simulation and control. Documentation is mainly written for myself, but feel free to read.
 
+See [rotor torque](rotor_torque.md) on how a drone changes yaw.
+
 ## Mathematical model
 *The following model only accounts for a single motor. Adding the remaining three should be straightforward and does not increase the complexity of the integrals.*
+
+*The following model only accounts for lift induced by the rotors; rotor interaction with the air in other directions is currently ignored. This means no yaw control. Coming soon.*
 
 Rotation of drone in axis-angle representation.
 
@@ -35,7 +39,7 @@ Rotational axis ![](https://render.githubusercontent.com/render/math?math=\color
 
 Position of drone. ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\alpha) has been split in three parts that can be integrated seperately.
 
-![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{r}(t)=\frac{1}{m}\displaystyle\int\int%20\underrightarrow{a}(t)%2B\underrightarrow{b}(t)%2B\underrightarrow{c}(t)dtdt)
+![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{r}(t)=\frac{1}{m}\displaystyle\int\int%20\underrightarrow{a}(t)%2B\underrightarrow{b}(t)%2B\underrightarrow{c}(t)\delta%20t\delta%20t)
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{a}(t)=\cos(\theta(t))\underrightarrow{F})
 

@@ -72,15 +72,15 @@ fn main() {
             &BLUE,
         ))
         .unwrap();
-    /*chart
-    .draw_series(LineSeries::new(
-        positions
-            .iter()
-            .enumerate()
-            .map(|(i, v)| (i as f64 * 0.01, v[2] as f64)),
-        &YELLOW,
-    ))
-    .unwrap();*/
+    chart
+        .draw_series(LineSeries::new(
+            positions
+                .iter()
+                .enumerate()
+                .map(|(i, v)| (i as f64 * 0.01, v[2] as f64)),
+            &GREEN,
+        ))
+        .unwrap();
     chart
         .draw_series(LineSeries::new(
             rotations

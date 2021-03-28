@@ -1,6 +1,6 @@
 extern crate nalgebra as na;
 use super::drone::Drone;
-use na::{Matrix3, Vector3};
+use na::Vector3;
 
 pub struct Integrator {
 	/// Gravitational acceleration in m/s^2

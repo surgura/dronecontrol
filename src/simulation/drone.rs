@@ -4,7 +4,7 @@ use na::{Matrix3, Vector3};
 #[derive(Debug)]
 pub struct Drone {
 	pub mass: f32,
-	pub inertia: Matrix3<f32>,
+	pub inverse_inertia: Matrix3<f32>,
 	pub position: Vector3<f32>,
 	pub velocity: Vector3<f32>,
 	pub rotation: Vector3<f32>,
@@ -12,10 +12,10 @@ pub struct Drone {
 }
 
 impl Drone {
-	pub fn new(mass: f32, inertia: Matrix3<f32>) -> Drone {
+	pub fn new(mass: f32, inverse_inertia: Matrix3<f32>) -> Drone {
 		return Drone {
 			mass: mass,
-			inertia: inertia,
+			inverse_inertia: inverse_inertia,
 			position: Vector3::new(0.0, 0.0, 0.0),
 			velocity: Vector3::new(0.0, 0.0, 0.0),
 			rotation: Vector3::new(0.0, 0.0, 0.0),

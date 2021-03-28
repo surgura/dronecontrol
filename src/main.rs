@@ -23,9 +23,11 @@ fn main() {
         0.0,
         1.0 / 12.0 * mass * (height * height + width * width),
     );
-    let mut drone = Drone::new(mass, inertia);
+    let mut inverse_inertia: Matrix3<f32> = Matrix3::zeros();
+    na::linalg::try_invert_to(inertia, &mut inverse_inertia);
+    let mut drone = Drone::new(mass, inverse_inertia);
 
-    let integrator = Integrator::new(0.0); //9.81);
+    let integrator = Integrator::new(9.81);
 
     //println!("{:?}", drone);
     let mut positions: Vec<Vector3<f32>> = Vec::new();

@@ -14,7 +14,7 @@ Where ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%2
 Questions arrise: How much yaw torque? And: How does this influence pitch and roll if the rotors are placed higher than the center of gravity?
 
 ## Math
-*Keep in mind this is simplification meant to provide insight. For the actual formulas, see [here](https://physics.stackexchange.com/a/32013/103264).*
+*Keep in mind this is simplification meant to provide insight. Reality is a lot more complex. This is just a nice simplification.*
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20F): force applied by the rotor.
 

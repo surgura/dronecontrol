@@ -1,19 +1,21 @@
 # Rotor torque
-*I am currently in the process of understanding this part. Can be blatently wrong.*
+*See bottom of page for TLDR at conclusion*
 
-A quadcopter can change its yaw by having a different rotational speed between its clockwise and counterclockwise spinning rotors. Each rotor pushes against the air, causing a torque, mainly around the yaw axis. Increasing and decreasing the speed of rotors also changes the drone's rotation, just like a reaction wheel would, but this is generally negligible compared the aforementioned force.
+A quadcopter can change its yaw by having a different rotational speed between its clockwise and counterclockwise spinning rotors. Each rotor pushes against the air, causing both lift and a torque around the yaw axis. Increasing and decreasing the speed of rotors also changes the drone's rotation, just like a reaction wheel would, but this is generally negligible compared the aforementioned force. The torque is caused by the horizontal part of the interaction with air.
 
 ![](yaw.png)
 
-Looking at the image above it should be clear that a rotor applies a force evenly in every direction. Note however the equation for torque:
+Looking at the image above it should be clear that a rotor applies this force evenly in every direction. Note however the equation for torque:
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{\tau}=\underrightarrow{r}\times%20\underrightarrow{F})
 
-Where ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20%20\underrightarrow{r}) is the vector from the center of gravity of the drone to the point where the force where ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20%20\underrightarrow{F}) is applied. The force applied further from the center of gravity thus has a larger unfluence on torque, and a rotor rotating at a constant speed will cause a rotational acceleration of the drone.
+Where ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20%20\underrightarrow{r}) is the vector from the center of gravity of the drone to the point where the force where ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20%20\underrightarrow{F}) is applied. The force applied further from the center of gravity thus has a larger influence on torque, and a rotor rotating at a constant speed will cause a rotational acceleration of the drone.
 
 Questions arrise: How much yaw torque? And: How does this influence pitch and roll if the rotors are placed higher than the center of gravity?
 
 ## Math
+*Keep in mind this is simplification meant to provide insight.*
+
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20F): force applied by the rotor.
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20r): distance from the center of the rotor to where the force is applied.
@@ -36,6 +38,7 @@ Solving
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\large\underrightarrow{\tau}=\begin{pmatrix}0%5C%5C-2\pi%20rF%5C%5C0\end{pmatrix}\delta\theta)
 
-**This makes no sense, a must be relevant**
+That is quite nice. Only yaw is affected by this effect, even if the rotor is positioned higher or lower than the drone's center of mass. Keep in mind that the force ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\underrightarrow{\F}) is a simplification of reality; there actually is force applied along the arm of the rotor. However, this would be modelled as an integral with varying ![](https://render.githubusercontent.com/render/math?math=\color{%23666}r) and ![](https://render.githubusercontent.com/render/math?math=\color{%23666}F), and as such has no influence on the above conclusions.
 
-That is quite nice. Only yaw is affected by this effect, even if the rotor is positioned higher or lower than the drone's center of mass.
+## Conclusion
+Each rotor applies a downward facing force(lift) and torque around the yaw axis of the drone, both increasing with increasing rotational velocity. Other effects are generally insignificant.

@@ -1,5 +1,5 @@
 # Rotor torque
-*See bottom of page for TLDR at conclusion*
+*See bottom of page for TLDR at conclusion.*
 
 A quadcopter can change its yaw by having a different rotational speed between its clockwise and counterclockwise spinning rotors. Each rotor pushes against the air, causing both lift and a torque around the yaw axis. Increasing and decreasing the speed of rotors also changes the drone's rotation, just like a reaction wheel would, but this is generally negligible compared the aforementioned force. The torque is caused by the horizontal part of the interaction with air.
 
@@ -14,7 +14,7 @@ Where ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%2
 Questions arrise: How much yaw torque? And: How does this influence pitch and roll if the rotors are placed higher than the center of gravity?
 
 ## Math
-*Keep in mind this is simplification meant to provide insight.*
+*Keep in mind this is simplification meant to provide insight. For the actual formulas, see [here](https://physics.stackexchange.com/a/32013/103264).*
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20F): force applied by the rotor.
 

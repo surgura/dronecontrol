@@ -2,12 +2,10 @@ extern crate nalgebra as na;
 mod simulation;
 use na::{Matrix3, Vector3};
 use plotters::prelude::*;
-use simulation::drone::Drone;
+use simulation::drone::{Drone, Motor};
 use simulation::integrator::Integrator;
 
 fn main() {
-    // width = depth = 0.5
-    // height = .01
     let width: f32 = 0.5;
     let height: f32 = 0.01;
     let depth: f32 = 0.5;
@@ -25,7 +23,26 @@ fn main() {
     );
     let mut inverse_inertia: Matrix3<f32> = Matrix3::zeros();
     na::linalg::try_invert_to(inertia, &mut inverse_inertia);
-    let mut drone = Drone::new(mass, inverse_inertia);
+    let mut drone = Drone::new(
+        mass,
+        inverse_inertia,
+        Motor::new(
+            1.0_f32 * Vector3::new(1.0, 0.0, -1.0).normalize(),
+            1.0,
+            -1.0,
+        ),
+        Motor::new(1.0_f32 * Vector3::new(1.0, 0.0, 1.0).normalize(), 1.0, 1.0),
+        Motor::new(
+            1.0_f32 * Vector3::new(-1.0, 0.0, -1.0).normalize(),
+            1.0,
+            1.0,
+        ),
+        Motor::new(
+            1.0_f32 * Vector3::new(-1.0, 0.0, 1.0).normalize(),
+            1.0,
+            -1.0,
+        ),
+    );
 
     let integrator = Integrator::new(9.81);
 
@@ -35,14 +52,12 @@ fn main() {
     positions.push(drone.position);
     rotations.push(drone.rotation);
     for _ in 0..1000 {
-        integrator.step(&mut drone, 0.01);
-        //println!("{:?} {:?}", drone.rotation, drone.angular_velocity);
-        //println!("{:?}", drone.position);
+        integrator.step(&mut drone, 0.01, 2.6, 2.4, 2.4, 2.6);
         positions.push(drone.position);
         rotations.push(drone.rotation);
     }
 
-    let root_drawing_area = BitMapBackend::new("images/0.1.png", (1024, 768)).into_drawing_area();
+    let root_drawing_area = BitMapBackend::new("images/plot.png", (1024, 768)).into_drawing_area();
 
     root_drawing_area.fill(&WHITE).unwrap();
 
@@ -108,6 +123,4 @@ fn main() {
             &BLACK,
         ))
         .unwrap();
-
-    println!("test");
 }

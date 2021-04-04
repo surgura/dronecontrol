@@ -12,7 +12,7 @@ Rotation of drone in axis-angle representation.
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\underrightarrow{\theta}=\theta%20\underrightarrow{e},\lvert%20e\rvert=1)
 
-Second derivative of rotation assuming a single motor. Arm ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\underrightarrow{r_F}) originates from drone center of gravity. ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20I) is the diagonal intertia tensor of the drone.
+Second derivative of rotation assuming a single motor. Arm ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\underrightarrow{r_F}) originates from drone center of gravity. ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20I) is the diagonal inertia tensor of the drone.
 
 ![](https://render.githubusercontent.com/render/math?math=\color{%23666}%20\large%20\ddot{\underrightarrow{\theta}}=I^{-1}(\underrightarrow{r_F}%20\times%20\underrightarrow{F}))
 

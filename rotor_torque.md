@@ -41,4 +41,4 @@ Solving
 That is quite nice. Only yaw is affected by this effect, even if the rotor is positioned higher or lower than the drone's center of mass. Keep in mind that the force ![](https://render.githubusercontent.com/render/math?math=\color{%23666}\underrightarrow{\F}) is a simplification of reality; there actually is force applied along the arm of the rotor. However, this would be modelled as an integral with varying ![](https://render.githubusercontent.com/render/math?math=\color{%23666}r) and ![](https://render.githubusercontent.com/render/math?math=\color{%23666}F), and as such has no influence on the above conclusions.
 
 ## Conclusion
-Each rotor applies a downward facing force(lift) and torque around the yaw axis of the drone, both increasing with increasing rotational velocity. Other effects are generally insignificant.
+Each rotor applies a downward facing force(lift) and torque around the yaw axis of the drone, both increasing with increasing rotational velocity.

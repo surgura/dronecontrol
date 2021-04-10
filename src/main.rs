@@ -1,5 +1,7 @@
 extern crate nalgebra as na;
+mod control;
 mod simulation;
+use control::angular_velocity_controller::AngularVelocityController;
 use na::{Matrix3, Vector3};
 use plotters::prelude::*;
 use simulation::drone::{Drone, Motor};
@@ -45,6 +47,8 @@ fn main() {
     );
 
     let integrator = Integrator::new(9.81);
+    let mut angular_velocity_controller = AngularVelocityController::new();
+    let mut measured_angular_velocity: Vector3<f32> = Vector3::zeros();
 
     //println!("{:?}", drone);
     let mut positions: Vec<Vector3<f32>> = Vec::new();
@@ -52,7 +56,10 @@ fn main() {
     positions.push(drone.position);
     rotations.push(drone.rotation);
     for _ in 0..1000 {
-        integrator.step(&mut drone, 0.01, 2.6, 2.4, 2.4, 2.6);
+        let (motor1rpm, motor2rpm, motor3rpm, motor4rpm) =
+            angular_velocity_controller.control(&measured_angular_velocity);
+        measured_angular_velocity =
+            integrator.step(&mut drone, 0.01, motor1rpm, motor2rpm, motor3rpm, motor4rpm);
         positions.push(drone.position);
         rotations.push(drone.rotation);
     }

@@ -23,6 +23,7 @@ impl Integrator {
 		};
 	}
 
+	// Returns angular velocity measured by accelerometer
 	pub fn step(
 		&self,
 		drone: &mut Drone,
@@ -31,7 +32,7 @@ impl Integrator {
 		motor2rpm: f32,
 		motor3rpm: f32,
 		motor4rpm: f32,
-	) {
+	) -> Vector3<f32> {
 		let motors: [&Motor; 4] = [&drone.motor1, &drone.motor2, &drone.motor3, &drone.motor4];
 		let rpms: [f32; 4] = [motor1rpm, motor2rpm, motor3rpm, motor4rpm];
 		let motor_direction = Vector3::new(0.0, 1.0, 0.0).normalize();
@@ -99,5 +100,7 @@ impl Integrator {
 			drone.rotation =
 				(drone.rotation.norm() % (std::f32::consts::PI * 2.0)) * drone.rotation.normalize();
 		}
+
+		return drone.angular_velocity;
 	}
 }

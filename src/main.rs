@@ -49,19 +49,29 @@ fn main() {
     let integrator = Integrator::new(9.81);
     let mut angular_velocity_controller = AngularVelocityController::new();
     let mut measured_angular_velocity: Vector3<f32> = Vector3::zeros();
+    let target_angular_velocity: Vector3<f32> = Vector3::new(100.0, 0.0, 0.0);
+    let max_pwm = 10.0;
 
     //println!("{:?}", drone);
     let mut positions: Vec<Vector3<f32>> = Vec::new();
     let mut rotations: Vec<Vector3<f32>> = Vec::new();
+    let mut angular_velocities: Vec<Vector3<f32>> = Vec::new();
     positions.push(drone.position);
     rotations.push(drone.rotation);
     for _ in 0..1000 {
-        let (motor1rpm, motor2rpm, motor3rpm, motor4rpm) =
-            angular_velocity_controller.control(&measured_angular_velocity);
-        measured_angular_velocity =
-            integrator.step(&mut drone, 0.01, motor1rpm, motor2rpm, motor3rpm, motor4rpm);
+        let (motor1rpm, motor2rpm, motor3rpm, motor4rpm) = angular_velocity_controller
+            .control(&target_angular_velocity, &measured_angular_velocity);
+        measured_angular_velocity = integrator.step(
+            &mut drone,
+            0.01,
+            motor1rpm * max_pwm,
+            motor2rpm * max_pwm,
+            motor3rpm * max_pwm,
+            motor4rpm * max_pwm,
+        );
         positions.push(drone.position);
         rotations.push(drone.rotation);
+        angular_velocities.push(drone.angular_velocity);
     }
 
     let root_drawing_area = BitMapBackend::new("images/plot.png", (1024, 768)).into_drawing_area();
@@ -76,6 +86,34 @@ fn main() {
 
     chart.configure_mesh().draw().unwrap();
 
+    chart
+        .draw_series(LineSeries::new(
+            angular_velocities
+                .iter()
+                .enumerate()
+                .map(|(i, v)| (i as f64 * 0.01, v[0] as f64)),
+            &RED,
+        ))
+        .unwrap();
+    chart
+        .draw_series(LineSeries::new(
+            angular_velocities
+                .iter()
+                .enumerate()
+                .map(|(i, v)| (i as f64 * 0.01, v[1] as f64)),
+            &BLUE,
+        ))
+        .unwrap();
+    chart
+        .draw_series(LineSeries::new(
+            angular_velocities
+                .iter()
+                .enumerate()
+                .map(|(i, v)| (i as f64 * 0.01, v[2] as f64)),
+            &GREEN,
+        ))
+        .unwrap();
+    /*
     chart
         .draw_series(LineSeries::new(
             positions
@@ -130,4 +168,5 @@ fn main() {
             &BLACK,
         ))
         .unwrap();
+    */
 }

@@ -35,7 +35,7 @@ impl Integrator {
 	) -> Vector3<f32> {
 		let motors: [&Motor; 4] = [&drone.motor1, &drone.motor2, &drone.motor3, &drone.motor4];
 		let rpms: [f32; 4] = [motor1rpm, motor2rpm, motor3rpm, motor4rpm];
-		let motor_direction = Vector3::new(0.0, 1.0, 0.0).normalize();
+		let motor_direction = Vector3::new(0.0, 0.0, 1.0).normalize();
 		let effects: ArrayVec<Effect, 4> = izip!(&motors, &rpms)
 			.map(|(motor, rpm)| Effect {
 				position: motor.position,
@@ -100,6 +100,8 @@ impl Integrator {
 			drone.rotation =
 				(drone.rotation.norm() % (std::f32::consts::PI * 2.0)) * drone.rotation.normalize();
 		}
+
+		//println!("drone.angular_velocity: {:?}", drone.angular_velocity);
 
 		return drone.angular_velocity;
 	}

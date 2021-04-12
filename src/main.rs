@@ -8,20 +8,21 @@ use simulation::drone::{Drone, Motor};
 use simulation::integrator::Integrator;
 
 fn main() {
-    let width: f32 = 0.5;
-    let height: f32 = 0.01;
-    let depth: f32 = 0.5;
+    let sizex: f32 = 0.5;
+    let sizey: f32 = 0.5;
+    let sizez: f32 = 0.01;
     let mass: f32 = 1.0;
+    // TODO check if correct
     let inertia = Matrix3::new(
-        1.0 / 12.0 * mass * (height * height + depth * depth),
+        1.0 / 12.0 * mass * (sizey * sizey + sizez * sizez),
         0.0,
         0.0,
         0.0,
-        1.0 / 12.0 * mass * (width * width + depth * depth),
+        1.0 / 12.0 * mass * (sizex * sizex + sizez * sizez),
         0.0,
         0.0,
         0.0,
-        1.0 / 12.0 * mass * (height * height + width * width),
+        1.0 / 12.0 * mass * (sizex * sizex + sizey * sizey),
     );
     let mut inverse_inertia: Matrix3<f32> = Matrix3::zeros();
     na::linalg::try_invert_to(inertia, &mut inverse_inertia);
@@ -29,18 +30,18 @@ fn main() {
         mass,
         inverse_inertia,
         Motor::new(
-            1.0_f32 * Vector3::new(1.0, 0.0, -1.0).normalize(),
+            1.0_f32 * Vector3::new(1.0, -1.0, 0.0).normalize(),
             1.0,
             -1.0,
         ),
-        Motor::new(1.0_f32 * Vector3::new(1.0, 0.0, 1.0).normalize(), 1.0, 1.0),
+        Motor::new(1.0_f32 * Vector3::new(1.0, 1.0, 0.0).normalize(), 1.0, 1.0),
         Motor::new(
-            1.0_f32 * Vector3::new(-1.0, 0.0, -1.0).normalize(),
+            1.0_f32 * Vector3::new(-1.0, -1.0, 0.0).normalize(),
             1.0,
             1.0,
         ),
         Motor::new(
-            1.0_f32 * Vector3::new(-1.0, 0.0, 1.0).normalize(),
+            1.0_f32 * Vector3::new(-1.0, 1.0, 0.0).normalize(),
             1.0,
             -1.0,
         ),
@@ -49,8 +50,8 @@ fn main() {
     let integrator = Integrator::new(9.81);
     let mut angular_velocity_controller = AngularVelocityController::new();
     let mut measured_angular_velocity: Vector3<f32> = Vector3::zeros();
-    let target_angular_velocity: Vector3<f32> = Vector3::new(100.0, 0.0, 0.0);
-    let max_pwm = 10.0;
+    let target_angular_velocity: Vector3<f32> = Vector3::new(2.0, 2.0, 2.0);
+    let max_pwm = 1.0;
 
     //println!("{:?}", drone);
     let mut positions: Vec<Vector3<f32>> = Vec::new();

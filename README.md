@@ -1,5 +1,5 @@
 # Drone control
-*This repository is a work in progress and currently mostly me writing my thoughts down. Once the controller properly works I will clean up and make a proper guide*
+*This repository is a work in progress and currently mostly me writing down my thoughts. Once the controller properly works I will clean up and make a proper guide*
 
 Quad rotor drone simulation and control. Documentation is mainly written for myself, but feel free to read.
 
